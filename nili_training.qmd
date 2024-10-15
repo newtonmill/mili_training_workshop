@@ -1,0 +1,86 @@
+---
+title: "Newton_Training"
+format: html
+editor: visual
+---
+
+## Packages
+
+```{r}
+library(readr)
+
+
+```
+
+
+## Data Import
+
+```{r}
+claims <- read_csv("claims.csv")
+claims
+
+```
+
+
+## Data Cleaning
+
+```{r}
+
+library(dplyr)
+library(ggplot2)
+
+claims_clean <- claims %>%
+  filter(
+    STATUS1 == "BILLED",
+    STATUS2 == "BILLED" | is.na(STATUS2),
+    STATUSP == "BILLED"
+  ) %>%
+mutate(
+    BILLED_STATUS = paste(STATUS1, STATUS2, STATUSP, sep = "-")
+  )
+
+```
+
+## Data Exploration
+
+```{r}
+
+ggplot() +
+ aes(x = DEPARTMENTID) +
+ geom_histogram(bins = 30L, fill = "#CC33CC") +
+ theme_minimal()
+
+```
+
+
+## Data Analysis
+
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
